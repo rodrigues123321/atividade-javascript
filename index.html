@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Lista de Tarefas</h1>
+
+            <div class="input-area">
+                <input type="text" id="new-task-input" placeholder="Adicionar nova tarefa...">
+                <button id="add-task-btn">+</button>
+            </div>
+        </header>
+
+        <section class="filters">
+            <button class="filter-btn active" data-filter="all">Todas</button>
+            <button class="filter-btn" data-filter="pending">Pendentes</button>
+            <button class="filter-btn" data-filter="completed">Concluídas</button>
+        </section>
+
+        <ul id="task-list"></ul>
+
+        <footer>
+            <span id="task-counter">0 tarefas pendentes</span>
+            <button id="clear-completed">Limpar concluídas</button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
