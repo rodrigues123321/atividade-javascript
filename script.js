@@ -1,17 +1,12 @@
-// ------- Dados -------
+
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 let currentFilter = "all";
 
 const taskInput = document.getElementById("taskInput");
 const taskList = document.getElementById("taskList");
 const pendingCount = document.getElementById("pendingCount");
-
-// ------- Salvar no localStorage -------
 function saveTasks() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
-}
-
-// ------- Renderizar Lista -------
 function renderTasks() {
     taskList.innerHTML = "";
 
@@ -37,16 +32,10 @@ function renderTasks() {
 
     updatePendingCount();
 }
-
-// ------- Contador de Pendentes -------
 function updatePendingCount() {
     const count = tasks.filter(t => !t.completed).length;
     pendingCount.textContent = `${count} tarefas pendentes`;
 }
-
-// ------- CRUD -------
-
-// Adicionar
 document.getElementById("addTaskBtn").onclick = () => {
     if (taskInput.value.trim() === "") return;
 
@@ -61,7 +50,7 @@ document.getElementById("addTaskBtn").onclick = () => {
     renderTasks();
 };
 
-// Marcar / Desmarcar concluída
+
 function toggleTask(id) {
     const task = tasks.find(t => t.id === id);
     task.completed = !task.completed;
@@ -69,7 +58,6 @@ function toggleTask(id) {
     renderTasks();
 }
 
-// Editar
 function editTask(id) {
     const task = tasks.find(t => t.id === id);
     const newText = prompt("Editar tarefa:", task.text);
@@ -81,21 +69,20 @@ function editTask(id) {
     }
 }
 
-// Excluir
+
 function deleteTask(id) {
     tasks = tasks.filter(t => t.id !== id);
     saveTasks();
     renderTasks();
 }
 
-// Excluir todas concluídas
 document.getElementById("clearCompleted").onclick = () => {
     tasks = tasks.filter(t => !t.completed);
     saveTasks();
     renderTasks();
 };
 
-// ------- Filtros -------
+
 document.querySelectorAll(".filters button").forEach(btn => {
     btn.onclick = () => {
         document.querySelector(".filters .active").classList.remove("active");
@@ -106,5 +93,4 @@ document.querySelectorAll(".filters button").forEach(btn => {
     };
 });
 
-// Render inicial
 renderTasks();
